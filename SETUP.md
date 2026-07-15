@@ -21,16 +21,22 @@ cd ~/code/e4b && git init && git add -A \
 
 ## 3. Register FOUR PyPI pending publishers (you — the only human-gated step)
 PyPI → account → **Publishing** → **Add a pending publisher**, once per name.
-All four share the same repo + workflow:
+
+**The Environment field is REQUIRED and must differ per package** — pending
+publishers need a unique (owner, repo, workflow, environment) tuple, or PyPI
+rejects the second one ("already registered for a different project name").
+Environment name = the same string as the project name:
 
 | PyPI project name | Owner | Repository | Workflow | Environment |
 |---|---|---|---|---|
-| `e4b` | `pjordanandrsn` | `e4b` | `release.yml` | *(blank)* |
-| `e4b-qlora` | `pjordanandrsn` | `e4b` | `release.yml` | *(blank)* |
-| `experts4bit` | `pjordanandrsn` | `e4b` | `release.yml` | *(blank)* |
-| `experts-4bit` | `pjordanandrsn` | `e4b` | `release.yml` | *(blank)* |
+| `e4b` | `pjordanandrsn` | `e4b` | `release.yml` | `e4b` |
+| `e4b-qlora` | `pjordanandrsn` | `e4b` | `release.yml` | `e4b-qlora` |
+| `experts4bit` | `pjordanandrsn` | `e4b` | `release.yml` | `experts4bit` |
+| `experts-4bit` | `pjordanandrsn` | `e4b` | `release.yml` | `experts-4bit` |
 
-(Multiple PyPI projects can trust the same repo+workflow — that's expected.)
+> If you already added `e4b` with a **blank** environment, remove that pending
+> publisher (trash icon on the Publishing page) and re-add it with
+> Environment = `e4b`. The four GitHub environments already exist in the repo.
 
 ## 4. Publish all four at once
 ```

@@ -1,9 +1,15 @@
 name: Release
 
 # Publishes ALL alias packages to PyPI via Trusted Publishing (OIDC) — no API
-# token/secret — on a single version-tag push. Each package name below must
-# have a PyPI pending publisher configured (see SETUP.md), all pointing at
-# owner: pjordanandrsn | repo: e4b | workflow: release.yml
+# token/secret — on a single version-tag push.
+#
+# Each package uses its OWN GitHub environment (named identically to the
+# package). This is required: PyPI PENDING publishers must each have a UNIQUE
+# (owner, repo, workflow, environment) tuple so the first upload can be mapped
+# to the right project name. The environment is the disambiguator.
+#
+# Each package name needs a PyPI pending publisher (see SETUP.md), pointing at:
+#   owner: pjordanandrsn | repo: e4b | workflow: release.yml | environment: <the package name>
 #
 # Publish everything at once:  git tag v0.1.0 && git push origin v0.1.0
 
@@ -18,6 +24,9 @@ jobs:
       fail-fast: false
       matrix:
         pkg: [e4b, e4b-qlora, experts4bit, experts-4bit]
+    environment:
+      name: ${{ matrix.pkg }}
+      url: https://pypi.org/p/${{ matrix.pkg }}
     permissions:
       id-token: write # mint the OIDC token PyPI trusts (per matrix job)
     steps:
