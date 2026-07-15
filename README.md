@@ -16,6 +16,6 @@ Each `import <name>` is transparently `experts4bit_qlora` (submodules included).
 Extras forward: `pip install e4b[train]` == `experts4bit-qlora[train]`.
 
 Publishing is **tokenless** (PyPI Trusted Publishing / OIDC) — one `git tag`
-push builds and publishes all four. See **[SETUP.md](SETUP.md)**.
+push builds and publishes every name in the release matrix. See **[SETUP.md](SETUP.md)**.
 
 Project home: <https://cerinamroth.com/ml/> · MIT © Cerin Amroth.
