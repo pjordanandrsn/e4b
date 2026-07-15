@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "experts-4bit"
+version = "0.1.0"
+description = "Alias for experts4bit-qlora — QLoRA fine-tuning of fused 4-bit Mixture-of-Experts on a single small GPU."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Jordan Anderson", email = "paul.jordan.anderson@gmail.com" }]
+keywords = ["experts4bit", "e4b", "bitsandbytes", "qlora", "moe", "mixture-of-experts", "quantization", "nf4", "alias"]
+# The point: installing this pulls in the real distribution. Floor (not ==) so
+# the alias keeps tracking experts4bit-qlora as it releases.
+dependencies = [
+    "experts4bit-qlora>=0.2.0",
+]
+
+# Extras forward to the real package's extras.
+[project.optional-dependencies]
+train = ["experts4bit-qlora[train]>=0.2.0"]
+serve = ["experts4bit-qlora[serve]>=0.2.0"]
+
+[project.urls]
+Homepage = "https://cerinamroth.com/ml/"
+"Real package (experts4bit-qlora)" = "https://pypi.org/project/experts4bit-qlora/"
+Source = "https://github.com/pjordanandrsn/experts4bit-qlora"
+
+[tool.setuptools.packages.find]
+include = ["experts_4bit*"]

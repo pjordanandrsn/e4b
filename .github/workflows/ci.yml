@@ -1,0 +1,33 @@
+name: CI
+
+# Build every alias and assert its metadata forwards to experts4bit-qlora, so
+# a broken shim can never be published.
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pkg: [e4b, e4b-qlora, experts4bit, experts-4bit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build + verify ${{ matrix.pkg }} depends on experts4bit-qlora
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build packages/${{ matrix.pkg }} --outdir dist
+          python -m pip install dist/*.whl
+          python - <<'PY'
+          import importlib.metadata as m
+          name = "${{ matrix.pkg }}"
+          reqs = m.requires(name) or []
+          assert any("experts4bit-qlora" in r for r in reqs), (name, reqs)
+          print(name, "requires:", reqs)
+          PY
