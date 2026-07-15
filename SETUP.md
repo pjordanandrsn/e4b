@@ -54,3 +54,16 @@ pip install e4b && python -c "import e4b, experts4bit_qlora; assert e4b is exper
   `experts4bit-qlora` releases without a new alias release.
 - If PyPI rejects a name at publish for policy reasons, that one matrix job
   fails independently (`fail-fast: false`); the others still publish.
+
+
+## Outcome (2026-07-15)
+
+- **Published live at v0.1.0:** `e4b`, `e4b-qlora`, `experts4bit` — all via OIDC, verified installable.
+- **`experts-4bit`: not registrable, and that's fine.** PyPI's name-similarity
+  rule ("too similar to an existing project") blocks any registration that
+  differs from `experts4bit` only by separators — for *everyone*, squatters
+  included. The defensive goal is achieved by PyPI itself. `pip install
+  experts-4bit` fails with a clean no-match error that points users at the
+  working name. If resolution is ever wanted, the owner of `experts4bit` can
+  request the name from PyPI admins; until then `packages/experts-4bit/`
+  stays staged and out of the release matrix.

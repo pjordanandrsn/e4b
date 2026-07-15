@@ -10,7 +10,7 @@ releases live in the real package; these are dependency + re-export shims.
 | [`e4b`](packages/e4b) | `import e4b` | experts4bit-qlora |
 | [`e4b-qlora`](packages/e4b-qlora) | `import e4b_qlora` | experts4bit-qlora |
 | [`experts4bit`](packages/experts4bit) | `import experts4bit` | experts4bit-qlora |
-| [`experts-4bit`](packages/experts-4bit) | `import experts_4bit` | experts4bit-qlora |
+| `experts-4bit` | — | *not registrable: PyPI's separator-similarity rule reserves it against `experts4bit`, blocking squatters automatically* |
 
 Each `import <name>` is transparently `experts4bit_qlora` (submodules included).
 Extras forward: `pip install e4b[train]` == `experts4bit-qlora[train]`.
