@@ -1,17 +1,22 @@
 name: Release
 
-# Publishes ALL alias packages to PyPI via Trusted Publishing (OIDC) — no API
-# token/secret — on a single version-tag push.
+# Publishes alias packages to PyPI via Trusted Publishing (OIDC) — no API
+# token/secret — on a version-tag push.
 #
 # Each package uses its OWN GitHub environment (named identically to the
-# package). This is required: PyPI PENDING publishers must each have a UNIQUE
-# (owner, repo, workflow, environment) tuple so the first upload can be mapped
-# to the right project name. The environment is the disambiguator.
+# package): PyPI PENDING publishers must each have a UNIQUE
+# (owner, repo, workflow, environment) tuple.
+#
+# NOTE: PyPI caps PENDING trusted publishers at 3 per account. So the first
+# release publishes 3 names; once live they become regular (non-pending)
+# publishers and free the slots, then `experts-4bit` is registered + added
+# back to the matrix for a follow-up tag. `skip-existing: true` makes any
+# re-run idempotent (already-uploaded versions are skipped, not errored).
 #
 # Each package name needs a PyPI pending publisher (see SETUP.md), pointing at:
 #   owner: pjordanandrsn | repo: e4b | workflow: release.yml | environment: <the package name>
 #
-# Publish everything at once:  git tag v0.1.0 && git push origin v0.1.0
+# Publish:  git tag v0.1.0 && git push origin v0.1.0
 
 on:
   push:
@@ -23,7 +28,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pkg: [e4b, e4b-qlora, experts4bit, experts-4bit]
+        # First 3 (PyPI pending-publisher cap = 3). `experts-4bit` is added
+        # back here once the first three publish and free a pending slot.
+        pkg: [e4b, e4b-qlora, experts4bit]
     environment:
       name: ${{ matrix.pkg }}
       url: https://pypi.org/p/${{ matrix.pkg }}
@@ -42,3 +49,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist
+          skip-existing: true
