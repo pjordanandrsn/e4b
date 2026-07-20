@@ -30,7 +30,7 @@ jobs:
       matrix:
         # First 3 (PyPI pending-publisher cap = 3). `experts-4bit` is added
         # back here once the first three publish and free a pending slot.
-        pkg: [e4b, e4b-qlora, experts4bit]
+        pkg: [e4b, e4b-qlora, experts4bit, experts-mxfp4]
     environment:
       name: ${{ matrix.pkg }}
       url: https://pypi.org/p/${{ matrix.pkg }}

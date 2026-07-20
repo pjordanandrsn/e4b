@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "expertsmxfp4"
+version = "0.1.0"
+description = "Alias for the MXFP4-family experts work — native-byte kernel + provenance in grouped-nf4-gemm, loaders/QLoRA/serving in experts4bit-qlora."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Jordan Anderson", email = "paul.jordan.anderson@gmail.com" }]
+keywords = ["mxfp4", "experts4bit", "bitsandbytes", "qlora", "moe", "mixture-of-experts", "quantization", "alias"]
+# The point: installing this pulls in the real distributions. Floors (not ==)
+# so the alias keeps tracking them as they release.
+dependencies = [
+    "experts4bit-qlora>=0.6.0",
+    "grouped-nf4-gemm>=0.2.0",
+]
+
+# Extras forward to the real package's extras.
+[project.optional-dependencies]
+train = ["experts4bit-qlora[train]>=0.6.0"]
+serve = ["experts4bit-qlora[serve]>=0.6.0"]
+fast = ["experts4bit-qlora[fast]>=0.6.0"]
+
+[project.urls]
+Homepage = "https://cerinamroth.com/ml/"
+"Real package (experts4bit-qlora)" = "https://pypi.org/project/experts4bit-qlora/"
+"Real package (grouped-nf4-gemm)" = "https://pypi.org/project/grouped-nf4-gemm/"
+Source = "https://github.com/pjordanandrsn/experts4bit-qlora"
+
+[tool.setuptools.packages.find]
+include = ["expertsmxfp4*"]

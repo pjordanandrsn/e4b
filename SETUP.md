@@ -67,3 +67,18 @@ pip install e4b && python -c "import e4b, experts4bit_qlora; assert e4b is exper
   working name. If resolution is ever wanted, the owner of `experts4bit` can
   request the name from PyPI admins; until then `packages/experts-4bit/`
   stays staged and out of the release matrix.
+
+## 2026-07-20 batch — the mxfp4-family names
+
+Two new alias packages, same pattern (the fold shipped the MXFP4 lane inside
+`grouped-nf4-gemm` 0.2.0, so these are defensive/convenience names):
+
+| PyPI project name | Owner | Repository | Workflow | Environment |
+|---|---|---|---|---|
+| `experts-mxfp4` | `pjordanandrsn` | `e4b` | `release.yml` | `experts-mxfp4` |
+
+`expertsmxfp4` is staged in `packages/` and CI-verified but **kept out of the
+release matrix** — once `experts-mxfp4` publishes, PyPI's separator-similarity
+rule auto-defends the squashed spelling (the `experts-4bit`/`experts4bit`
+precedent). The kernel-side name (`grouped-mxfp4-gemm`) lives in its own repo
+mirroring `gnf4`/`nf4gemm`.
