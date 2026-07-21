@@ -9,6 +9,18 @@ on:
   pull_request:
 
 jobs:
+  extras-drift:
+    # Every alias must forward experts4bit-qlora's FULL published extra set;
+    # a missing extra (e.g. [fast] silently skipping the kernel) fails the build.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: alias extras == real package extras
+        run: python scripts/check_alias_extras.py
+
   smoke:
     runs-on: ubuntu-latest
     strategy:

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "experts-4bit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Alias for experts4bit-qlora — QLoRA fine-tuning of fused 4-bit Mixture-of-Experts on a single small GPU."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -19,8 +19,10 @@ dependencies = [
 
 # Extras forward to the real package's extras.
 [project.optional-dependencies]
+fast = ["experts4bit-qlora[fast]>=0.2.0"]
 train = ["experts4bit-qlora[train]>=0.2.0"]
 serve = ["experts4bit-qlora[serve]>=0.2.0"]
+test = ["experts4bit-qlora[test]>=0.2.0"]
 
 [project.urls]
 Homepage = "https://cerinamroth.com/ml/"
