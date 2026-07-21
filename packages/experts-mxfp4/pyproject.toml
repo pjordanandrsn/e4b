@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "experts-mxfp4"
-version = "0.1.0"
+version = "0.1.1"
 description = "Alias for the MXFP4-family experts work — native-byte kernel + provenance in grouped-nf4-gemm, loaders/QLoRA/serving in experts4bit-qlora."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -20,9 +20,10 @@ dependencies = [
 
 # Extras forward to the real package's extras.
 [project.optional-dependencies]
+fast = ["experts4bit-qlora[fast]>=0.6.0"]
 train = ["experts4bit-qlora[train]>=0.6.0"]
 serve = ["experts4bit-qlora[serve]>=0.6.0"]
-fast = ["experts4bit-qlora[fast]>=0.6.0"]
+test = ["experts4bit-qlora[test]>=0.6.0"]
 
 [project.urls]
 Homepage = "https://cerinamroth.com/ml/"
