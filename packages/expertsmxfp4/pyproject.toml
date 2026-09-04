@@ -30,7 +30,7 @@ Homepage = "https://github.com/pjordanandrsn/experts4bit-qlora"
 Documentation = "https://github.com/pjordanandrsn/experts4bit-qlora/blob/main/docs/SOLUTIONS.md"
 Source = "https://github.com/pjordanandrsn/experts4bit-qlora"
 Issues = "https://github.com/pjordanandrsn/experts4bit-qlora/issues"
-"Canonical package (experts4bit-qlora)" = "https://pypi.org/project/experts4bit-qlora/"
+"Canonical: experts4bit-qlora" = "https://pypi.org/project/experts4bit-qlora/"
 
 
 [tool.setuptools.packages.find]
