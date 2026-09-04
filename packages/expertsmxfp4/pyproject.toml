@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "expertsmxfp4"
 version = "0.1.1"
-description = "Alias for the MXFP4-family experts work — native-byte kernel + provenance in grouped-nf4-gemm, loaders/QLoRA/serving in experts4bit-qlora."
+description = "Alias for experts4bit-qlora (lookup name; install experts4bit-qlora): Train and serve Mixture-of-Experts models that do not fit in VRAM: fused 4-bit experts, QLoRA, CPU/NVMe offload, and fast inference on consumer NVIDIA GPUs."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
@@ -26,10 +26,12 @@ serve = ["experts4bit-qlora[serve]>=0.6.0"]
 test = ["experts4bit-qlora[test]>=0.6.0"]
 
 [project.urls]
-Homepage = "https://cerinamroth.com/ml/"
-"Real package (experts4bit-qlora)" = "https://pypi.org/project/experts4bit-qlora/"
-"Real package (grouped-nf4-gemm)" = "https://pypi.org/project/grouped-nf4-gemm/"
+Homepage = "https://github.com/pjordanandrsn/experts4bit-qlora"
+Documentation = "https://github.com/pjordanandrsn/experts4bit-qlora/blob/main/docs/SOLUTIONS.md"
 Source = "https://github.com/pjordanandrsn/experts4bit-qlora"
+Issues = "https://github.com/pjordanandrsn/experts4bit-qlora/issues"
+"Canonical: experts4bit-qlora" = "https://pypi.org/project/experts4bit-qlora/"
+
 
 [tool.setuptools.packages.find]
 include = ["expertsmxfp4*"]

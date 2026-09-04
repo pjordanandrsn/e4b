@@ -1,21 +1,26 @@
 # experts4bit
 
-**Alias for [`experts4bit-qlora`](https://pypi.org/project/experts4bit-qlora/).**
+**This is an alias.** `experts4bit` is a lookup name for the canonical package
+**[`experts4bit-qlora`](https://pypi.org/project/experts4bit-qlora/)** — it depends on it and `import experts4bit` re-exports `experts4bit_qlora`.
+Install the canonical package:
 
 ```bash
-pip install experts4bit
-```
-```python
-import experts4bit   # identical to `import experts4bit_qlora`
+pip install experts4bit-qlora
 ```
 
-`experts4bit` is one of several short/variant names for **experts4bit-qlora** —
-QLoRA fine-tuning of fused 4-bit Mixture-of-Experts on a single small GPU, on
-stock bitsandbytes. This package is a thin alias so the name resolves instead
-of dead-ending; all code, docs, and releases live in the real package.
+`pip install experts4bit` resolves to the same distribution; extras forward (`experts4bit[x]` = `experts4bit-qlora[x]`).
 
-- Real package: https://pypi.org/project/experts4bit-qlora/
-- Source: https://github.com/pjordanandrsn/experts4bit-qlora
-- Project home: https://cerinamroth.com/ml/
+- **Canonical documentation:** [https://github.com/pjordanandrsn/experts4bit-qlora](https://github.com/pjordanandrsn/experts4bit-qlora) — start with `docs/SOLUTIONS.md` (one page per problem), `docs/STATUS.md` (the current position) and `docs/capabilities.json` (machine-readable capabilities).
+- **Canonical source and issues:** [https://github.com/pjordanandrsn/experts4bit-qlora](https://github.com/pjordanandrsn/experts4bit-qlora) · [issues](https://github.com/pjordanandrsn/experts4bit-qlora/issues). File every issue there, not here.
 
-Extras forward: `pip install experts4bit[train]` / `[serve]`. MIT © Cerin Amroth.
+**What the canonical package solves** (Train and serve Mixture-of-Experts models that do not fit in VRAM: fused 4-bit experts, QLoRA, CPU/NVMe offload, and fast inference on consumer NVIDIA GPUs.)
+
+- `load_in_4bit=True` loads your MoE but the fused expert tensors stay bf16 and the model still OOMs
+- QLoRA or LoRA on fused MoE experts that PEFT and the bitsandbytes walker never see
+- running a Mixture-of-Experts model larger than VRAM (experts in host RAM) or larger than host RAM (experts on NVMe)
+- serving or training a 30B-class MoE on a 24–32 GB consumer NVIDIA GPU
+- native MXFP4 experts (gpt-oss, DeepSeek-V4): faithful load, arenas, training, serving
+
+This page carries no measurements, changelog or documentation of its own; the canonical repository's claims register is the only source for numbers.
+
+MIT © Cerin Amroth.
